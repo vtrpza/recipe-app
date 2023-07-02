@@ -1,11 +1,12 @@
 "use client";
-
-import React, { useEffect, useState, useRef } from "react";
+/** @jsxImportSource theme-ui */
+import React, { useEffect, useState } from "react";
+import { useColorMode } from "theme-ui";
 import Recipe from "./Recipe";
 
 function RecipeList() {
   const [recipes, setRecipes] = useState([]);
-  const [theme, setTheme] = useState("light");
+  const [colorMode, setColorMode] = useColorMode();
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/recipes`)
@@ -13,26 +14,24 @@ function RecipeList() {
       .then((data) => setRecipes(data));
   }, []);
 
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  const toggleColorMode = () => {
+    setColorMode(colorMode === "default" ? "dark" : "default");
   };
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
 
   return (
     <div
-      style={{
+      sx={{
         maxWidth: "1100px",
         height: "100vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor: "background",
+        color: "text",
       }}
     >
       <div
-        style={{
+        sx={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))",
           gap: "2px",
@@ -40,11 +39,13 @@ function RecipeList() {
         }}
       >
         {recipes.map((recipe) => (
-          <Recipe key={recipe.id} recipe={recipe} theme={theme} />
+          <Recipe key={recipe.id} recipe={recipe} />
         ))}
       </div>
-      <button onClick={toggleTheme}>
-        {theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
+      <button onClick={toggleColorMode}>
+        {colorMode === "default"
+          ? "Switch to Dark Mode"
+          : "Switch to Light Mode"}
       </button>
     </div>
   );

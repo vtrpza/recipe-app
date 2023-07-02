@@ -1,23 +1,15 @@
-import React, { useEffect, useRef } from "react";
+/** @jsxImportSource theme-ui */
 
-function Recipe({ recipe, theme }) {
-  const ref = useRef();
-
-  useEffect(() => {
-    const boxShadow = getComputedStyle(ref.current)
-      .getPropertyValue("--primary-glow")
-      .trim();
-    ref.current.style.boxShadow = boxShadow;
-  }, [theme]);
-
+function Recipe({ recipe }) {
   return (
     <div
-      ref={ref}
-      style={{
+      sx={{
         width: { xs: "100%", sm: "85%", md: "70%" },
         minHeight: "252px",
         marginBottom: "2px",
         borderRadius: "12px",
+        backgroundColor: "primary",
+        color: "background",
       }}
     >
       <div>

@@ -1,5 +1,7 @@
 // pages/_app.js
 import { useEffect } from "react";
+import { ThemeUIProvider, ColorModeProvider } from "theme-ui";
+import theme from "./../utils/theme";
 import { Inter } from "next/font/google";
 import "./../globals.css";
 
@@ -16,13 +18,11 @@ export default function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <>
-      <html lang="pt-BR">
-        <body className={inter.className}>
-          <Component {...pageProps} />
-        </body>
-      </html>
-      {inter.getStyleElement()}
-    </>
+    <ThemeUIProvider theme={theme}>
+      <ColorModeProvider>
+        <Component {...pageProps} />
+        {inter.getStyleElement()}
+      </ColorModeProvider>
+    </ThemeUIProvider>
   );
 }
