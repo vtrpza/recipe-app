@@ -70,9 +70,7 @@ function RecipeList() {
   const handleSort = () => {
     const sortedRecipes = [...filteredRecipes].sort((a, b) => {
       if (sortOrder === "asc") {
-        if (filterOption === "time") {
-          return a.time[0] - b.time[0];
-        } else if (filterOption === "likes") {
+        if (filterOption === "likes") {
           return a.likes[0] - b.likes[0];
         } else if (filterOption === "author") {
           return a.author[0].localeCompare(b.author[0]);
@@ -80,9 +78,7 @@ function RecipeList() {
           return a.name[0].localeCompare(b.name[0]);
         }
       } else {
-        if (filterOption === "time") {
-          return b.time[0] - a.time[0];
-        } else if (filterOption === "likes") {
+        if (filterOption === "likes") {
           return b.likes[0] - a.likes[0];
         } else if (filterOption === "author") {
           return b.author[0].localeCompare(a.author[0]);
@@ -111,12 +107,11 @@ function RecipeList() {
         />
         <select value={filterOption} onChange={handleSelect} style={inputStyle}>
           <option value="name">Nome</option>
-          <option value="time">Tempo</option>
           <option value="likes">Likes</option>
           <option value="author">Autor</option>
         </select>
         <button onClick={handleSort} style={buttonStyle}>
-          Ordenar {sortOrder === "asc" ? "A-Z" : "Z-A"}
+          Ordenar {sortOrder === "asc" ? "por ascendência" : "por descendência"}
         </button>
       </div>
       <div style={gridStyle}>
