@@ -5,7 +5,7 @@ import { useTheme } from "../pages/_app";
 
 function RecipeList() {
   const [recipes, setRecipes] = useState([]);
-  const { theme: currentTheme, toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/recipes`)
