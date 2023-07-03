@@ -1,5 +1,3 @@
-/** @jsxImportSource theme-ui */
-
 function Recipe({ recipe }) {
   return (
     <div

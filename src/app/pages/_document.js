@@ -1,6 +1,4 @@
-// src/pages/_document.js
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import { InitializeColorMode } from "theme-ui";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -13,7 +11,6 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head />
         <body>
-          <InitializeColorMode />
           <Main />
           <NextScript />
         </body>

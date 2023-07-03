@@ -1,22 +1,17 @@
 "use client";
-/** @jsxImportSource theme-ui */
 import React, { useEffect, useState } from "react";
-import { useColorMode } from "theme-ui";
 import Recipe from "./Recipe";
+import { useTheme } from "../pages/_app";
 
 function RecipeList() {
   const [recipes, setRecipes] = useState([]);
-  const [colorMode, setColorMode] = useColorMode();
+  const { theme: currentTheme, toggleTheme } = useTheme();
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/recipes`)
       .then((response) => response.json())
       .then((data) => setRecipes(data));
   }, []);
-
-  const toggleColorMode = () => {
-    setColorMode(colorMode === "default" ? "dark" : "default");
-  };
 
   return (
     <div
@@ -26,8 +21,8 @@ function RecipeList() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "background",
-        color: "text",
+        backgroundColor: theme === "light" ? "white" : "black",
+        color: theme === "light" ? "black" : "white",
       }}
     >
       <div
@@ -42,10 +37,8 @@ function RecipeList() {
           <Recipe key={recipe.id} recipe={recipe} />
         ))}
       </div>
-      <button onClick={toggleColorMode}>
-        {colorMode === "default"
-          ? "Switch to Dark Mode"
-          : "Switch to Light Mode"}
+      <button onClick={toggleTheme}>
+        {theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
       </button>
     </div>
   );
