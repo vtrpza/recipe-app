@@ -5,7 +5,7 @@ function HomePage() {
   return (
     <div>
       <header>
-        <h1>Welcome to My Recipe App</h1>
+        <h1>Receitas da Dri</h1>
       </header>
       <main>
         <RecipeList />

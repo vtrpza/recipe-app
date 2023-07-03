@@ -104,19 +104,19 @@ function RecipeList() {
       <div style={filterStyle}>
         <input
           type="text"
-          placeholder="Search recipes..."
+          placeholder="Busque receitas..."
           onChange={handleFilter}
           value={searchTerm}
           style={inputStyle}
         />
         <select value={filterOption} onChange={handleSelect} style={inputStyle}>
-          <option value="name">Name</option>
-          <option value="time">Time</option>
+          <option value="name">Nome</option>
+          <option value="time">Tempo</option>
           <option value="likes">Likes</option>
-          <option value="author">Author</option>
+          <option value="author">Autor</option>
         </select>
         <button onClick={handleSort} style={buttonStyle}>
-          Sort {sortOrder === "asc" ? "A-Z" : "Z-A"}
+          Ordenar {sortOrder === "asc" ? "A-Z" : "Z-A"}
         </button>
       </div>
       <div style={gridStyle}>
@@ -125,9 +125,7 @@ function RecipeList() {
         ))}
       </div>
       <button style={buttonStyle} onClick={toggleTheme}>
-        {theme.themeMode === "light"
-          ? "Switch to Dark Mode"
-          : "Switch to Light Mode"}
+        {theme.themeMode === "light" ? "Modo escuro" : "Modo claro"}
       </button>
     </div>
   );
